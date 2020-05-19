@@ -1,0 +1,7 @@
+groups:
+  module: bbgax
+  class: group_all_x
+  domains: 
+    - device_tracker
+    - light
+    - switch

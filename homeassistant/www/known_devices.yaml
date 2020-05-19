@@ -1,0 +1,16 @@
+
+omri_note8:
+  hide_if_away: false
+  icon:
+  mac:
+  name: omri
+  picture: /local/omri.jpg
+  track: true
+
+moran_s9:
+  hide_if_away: false
+  icon:
+  mac:
+  name: moran
+  picture: /local/moran.jpg
+  track: true

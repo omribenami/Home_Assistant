@@ -1,0 +1,60 @@
+
+
+#########################################
+# Turn off input boolean greeting       #
+#########################################
+turn_off_input_boolean_omri_greeting:
+  sequence:
+  - condition: state
+    entity_id: person.omri_ben_ami
+    state: home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.omri_greeting
+turn_off_input_boolean_moran_greeting:
+  sequence:
+  - condition: state
+    entity_id: person.moran12345
+    state: home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.moran_greeting
+
+#########################################
+#            switcher_API               #
+#########################################
+
+switcher_turn_on_timer_script:
+  alias: On with Timer
+  sequence:
+  - delay:
+      milliseconds: 100
+  - service: rest_command.switcher_turn_on
+    data_template:
+      minutes: '{{ states("input_select.switcher_timer_minutes_input_select") }}'
+  - service: homeassistant.update_entity
+    entity_id: sensor.switcher_webapi
+switcher_turn_on:
+  alias: Turn On
+  sequence:
+  - service: rest_command.switcher_turn_on
+  - service: homeassistant.update_entity
+    entity_id: sensor.switcher_webapi
+switcher_turn_off:
+  alias: Turn Off
+  sequence:
+  - service: rest_command.switcher_turn_off
+  - service: homeassistant.update_entity
+    entity_id: sensor.switcher_webapi
+
+#########################################
+#            shell_scripts              #
+#########################################
+
+backup_to_hardisk:
+  alias: 'Backup Home Assitant img'
+  sequence:
+  - service: shell_command.homeassistant
+   
+update_homeassistant_container:
+  alias: 'Update Home Assitant docker'
+  sequence:
+  - service: shell_command.homeassistant_updade

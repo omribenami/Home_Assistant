@@ -1,0 +1,8 @@
+- platform: smartir
+  name: Living room TV
+  unique_id: LR_samsung_tv
+  device_code: 1060
+  controller_data: 10.0.0.8
+  power_sensor: binary_sensor.tv_power
+  power_sensor: binary_sensor.tv_power_wifi
+

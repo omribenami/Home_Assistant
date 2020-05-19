@@ -1,0 +1,219 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+frontend:
+  themes: !include_dir_merge_named themes
+# themes: !include themes.yaml
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+ 
+# Text to speech
+tts:
+  - platform: google_translate
+
+binary_sensor: !include binary_sensors.yaml
+group: !include groups.yaml
+script: !include scripts.yaml
+input_boolean: !include boolean.yaml
+sensor: !include sensor.yaml
+climate: !include climate.yaml
+zone: !include zone.yaml
+automation: !include automations.yaml
+shell_command: !include config/shell_commands.yaml
+
+# Discover some devices automatically
+discovery: 
+  
+# built-in services:
+sun:
+wake_on_lan:
+  samsung_hu8500:
+    - host: 10.0.0.0
+      turn_on_action:
+        - service: wake_on_lan.send_magic_packet
+          data:
+            mac: "50:56:BF:5E:XX:XX"
+ios:
+updater:
+python_script:
+cloud:
+  
+#lovelace:
+#  mode: yaml
+
+speedtestdotnet:
+#  server_id: 1330
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+read_your_meter: 
+  host: http://localhost:4444
+  username: XXXXX.omri@gmail.com
+  password: !secret meter 
+
+sonoff:
+  username: XXXXX.omri@gmail.com
+  password: !secret sonoff
+#  scan_interval: 1250
+#  grace_period: 600
+#  api_region: 'as'
+  reload: once  # update device list every time HA starts
+  
+calendar:
+  - platform: todoist
+    token:  !secret todoist   
+    
+tuya:
+  username: XXXXXX.omri@gmail.com
+  password: !secret Tuya
+  country_code: 972
+  platform: jinvoo_smart
+
+system_health:
+
+spotify:
+  client_id: !secret spot_id
+  client_secret: !secret spot_sec
+
+smartir:
+   update_branch: rc
+
+switch: !include switch.yaml
+
+media_player: !include media_player.yaml
+ 
+device_tracker:
+# - platform: google_maps
+#   username: XXXX.tracker@gmail.com
+ - platform: nmap_tracker
+   hosts:
+     - 10.0.0.1-255
+   track_new_devices: yes
+   interval_seconds: 30
+   consider_home: 180
+
+#weather service:
+weather:
+ - platform: darksky
+   api_key: !secret api_key
+   mode: daily
+   
+google:
+  client_id: !secret google
+  client_secret: !secret client_secret
+
+logger:
+  default: error
+  logs:
+    custom_components.gree: debug
+    custom_components.gree.climate: debug
+  default: info
+  logs:
+    custom_components.sonoff: debug
+
+xiaomi_aqara:
+  discovery_retry: 9999
+  gateways:
+    - key: !secret key
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret Tele_api_key
+    allowed_chat_ids:
+      - 12345678  
+
+
+# entry for the notifier
+notify:
+  - name: NOTIFIER_NAME
+    platform: telegram
+    chat_id: 12345678
+ 
+
+cover:
+  - platform: mqtt
+    name: "Shutters Blinds - Salon"
+    availability_topic: "tele/SalonShutter/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    position_topic: "stat/SalonShutter/SHUTTER1"
+    value_template: "{{ value | int }}"
+    position_open: 100
+    position_closed: 0
+    set_position_topic: "cmnd/SalonShutter/SHUTTERPOSITION1"
+    command_topic: "cmnd/SalonShutter/BACKLOG"
+    payload_open: "ShutterOpen1"
+    payload_close: "ShutterClose1"
+    payload_stop: "ShutterStop1"
+    retain: false
+    optimistic: false
+    qos: 1
+
+rest_command:
+  switcher_turn_on:
+    url: http://10.0.0.12:8000/switcher/turn_on
+    method: "POST"
+    payload: '{"minutes": "{{ minutes }}"}'
+ 
+  switcher_turn_off:
+    url: http://10.0.0.12:8000/switcher/turn_off
+    method: "POST"
+ 
+  switcher_get_state:
+    url: http://10.0.0.12:8000/switcher/get_state
+    method: "POST"
+
+#switcher_aio:
+#  phone_id: !secret phone_id
+#  device_id: !secret device_id
+#  device_password: !secret device_password
+#  create_view: true
+#  create_groups: true
+#  schedules_scan_interval:
+#   minutes: 5
+
+input_select:
+  switcher_timer_minutes_input_select:
+    name: Timer minutes
+    options:
+      - 15
+      - 30
+      - 45
+      - 60
+
+input_number:
+  water_meter_daily_threshold:
+   name: Daily Max Threshold
+   icon: mdi:speedometer
+   unit_of_measurement: "m3"
+   min: 0
+   max: 2
+   step: 0.1      
+  water_meter_monthly_threshold:
+   name: monthly Max Threshold
+   icon: mdi:speedometer
+   unit_of_measurement: "m3"
+   min: 0
+   max: 30
+   step: 0.6      
+
+# basic configurations:
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 32.1234567
+  longitude: 35.1234567
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Asia/overtherainbow
+  customize: !include customize.yaml

@@ -1,0 +1,20 @@
+set_out_from_home:
+  name: Out
+  initial: off
+  icon: mdi:car
+switch_ac_kitchen:
+  name: AC kitchen
+switch_ac_livingroom:
+  name: AC living room
+evening:
+  name: evening
+  initial: off
+goodnight:
+  name: goodnight
+  initial: off
+been_to_beka:
+  name: been_to_beka
+  initial: off
+google_sign_off:
+  name: google_sign_off
+  initial: off

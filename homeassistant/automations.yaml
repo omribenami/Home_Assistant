@@ -1,0 +1,403 @@
+- id: '1558891581373'
+  alias: Automatic Theme sunrise
+  trigger:
+  - event: start
+    platform: homeassistant
+  - entity_id: sun.sun
+    platform: state
+    to: above_horizon
+  action:
+  - data:
+      name: ios-bright-mode
+    service: frontend.set_theme
+- id: '1558891581374'
+  alias: Automatic Theme sunset
+  trigger:
+  - event: start
+    platform: homeassistant
+  - entity_id: sun.sun
+    platform: state
+    to: below_horizon
+  action:
+  - data:
+      name: ios-dark-mode
+    service: frontend.set_theme
+- id: '1558891581375'
+  alias: led change to red on event
+  trigger:
+  - event: start
+    platform: homeassistant
+  - entity_id: calendar.lygt_h_l_hpv_l_y_m
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      entity_id: light.06200292dc4f222ff779
+      rgb_color:
+      - 255
+      - 0
+      - 0
+    service: light.turn_on
+  - delay: 02:00:00
+  - data:
+      entity_id: light.06200292dc4f222ff779
+      rgb_color:
+      - 0
+      - 0
+      - 255
+    service: light.turn_on
+- id: '1558891581355'
+  alias: moran is Home
+  trigger:
+  - entity_id: device_tracker.google_maps_100754545863733815584
+    for: 00:05:00
+    platform: state
+    to: home
+  condition:
+  - condition: state
+    entity_id: person.omri
+    state: not_home
+  action:
+  - data:
+      message: מורן בבית
+    service: telegram_bot.send_message
+- id: '1558891581356'
+  alias: עידו בגן
+  trigger:
+  - entity_id: person.moran
+    for: 00:02:00
+    platform: state
+    to: גן עידו
+  condition:
+  - after: 07:30
+    before: 08:00
+    condition: time
+  - condition: zone
+    entity_id: person.moran
+    zone: zone.gn_ydv
+  action:
+  - data:
+      message: Ido is at the Kindergarten
+    service: telegram_bot.send_message
+- id: '1558891581357'
+  alias: איתי בגן
+  trigger:
+  - entity_id: person.moran
+    for: 00:02:00
+    platform: state
+    to: גן איתי
+  condition:
+  - condition: zone
+    entity_id: person.moran
+    zone: zone.gn_yty
+  - after: 07:30
+    before: 08:00
+    condition: time
+  action:
+  - data:
+      message: Itay is at the Kindergarten
+    service: telegram_bot.send_message
+- id: '1568831177120'
+  alias: omri left work
+  trigger:
+  - entity_id: person.omri
+    event: leave
+    platform: zone
+    zone: zone.rmt_bq
+  condition:
+  - condition: state
+    entity_id: person.omri
+    state: not_home
+  - after: '15:00'
+    before: '22:00'
+    condition: time
+  action:
+  - data_template:
+      message: Moran... I Have happy announce for you, Omri has left work and will
+        arrive Home in about, {{states('sensor.omri_to_home')}} minutes
+    entity_id: media_player.living_room_speaker
+    service: tts.google_translate_say
+  - data:
+      massage: Moran was notified that your on your way home
+    service: telegram_bot.send_message
+- id: '1568921421606'
+  alias: Omri entered Ariel
+  trigger:
+  - entity_id: person.omri
+    event: enter
+    platform: zone
+    zone: zone.ariel_entrence
+  condition:
+  - condition: state
+    entity_id: person.moran
+    state: home
+  action:
+  - data:
+      message: Moran, Omri just entered Ariel if you need somthing from the grocery
+        store, know will be agood time to let him know
+    service: tts.google_translate_say
+- id: '1569245941695'
+  alias: new package arrived
+  trigger:
+  - at: '17:30'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: person.omri_ben_ami
+    state: home
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: person.moran12345
+      state: home
+  - condition: state
+    entity_id: sensor.seventeentrack_packages_ready_to_be_picked_up
+    state: '1'
+  action:
+  - data:
+      Message: Hey , a new package has arrived at motek shel mamtek dont forget to
+        pick it up. U can pick it only until 19:00 bye.
+    service: tts.google_translate_say
+- id: '1569447142771'
+  alias: כיבוי מזגן חדר רביעי
+  trigger:
+  - at: 01:30:00
+    platform: time
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: climate.pc_room_ac
+      state: cool
+    - condition: state
+      entity_id: climate.pc_room_ac
+      state: heat
+  action:
+  - data:
+      entity_id: climate.pc_room_ac
+    service: climate.turn_off
+- id: '1569448112905'
+  alias: כיבוי מזגן סלון
+  trigger:
+  - at: 01:00:00
+    platform: time
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.tv_power
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: climate.livingroom_ac
+        state: cool
+      - condition: state
+        entity_id: climate.livingroom_ac
+        state: heat
+  action:
+  - data:
+      entity_id: climate.livingroom_ac
+    service: climate.turn_off
+- id: '1573921032754'
+  alias: כיבוי בוילר
+  description: ''
+  trigger:
+  - entity_id: switcher_aio.electric_current_sensor
+    for: 00:02:00
+    platform: state
+    to: '0.0'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: switcher_aio.control_device_switch
+      for: 00:02:00
+      state: 'on'
+  action:
+  - data:
+      entity_id: switcher_aio.control_device_switch
+    service: switcher_aio.turn_off
+  - data:
+      message: boiler is at maximum temprature. Turning boiler off. Enjoy your shower.
+    service: tts.google_translate_say
+- id: '1574490100043'
+  alias: sunset lights
+  description: ''
+  trigger:
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: switch.sonoff_10009f6cd7_1
+    service: switch.turn_on
+- id: '1575139211039'
+  alias: sunrise light
+  description: ''
+  trigger:
+  - event: sunrise
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: switch.sonoff_10009f6cd7_1
+    service: switch.turn_off
+- id: '1579474215829'
+  alias: turn ac on at 5:00AM
+  description: ''
+  trigger:
+  - at: 05:00:00
+    platform: time
+  condition: []
+  action:
+  - entity_id: climate.livingroom_ac
+    service: climate.turn_on
+- id: '1581523254545'
+  alias: Greeting - Jarvis Greeting
+  trigger:
+  - entity_id: binary_sensor.motion_sensor_158d0003502d9f
+    platform: state
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: input_boolean.omri_greeting
+          state: 'on'
+        - condition: state
+          entity_id: person.omri
+          state: home
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: input_boolean.moran_greeting
+          state: 'on'
+        - condition: state
+          entity_id: person.moran
+          state: home
+  action:
+  - delay: 00:00:04
+  - entity_id: script.jarvis_greeting
+    service: script.turn_on
+  - delay: 00:02:00
+  - entity_id: script.turn_off_input_boolean_omri_greeting, script.turn_off_input_boolean_moran_greeting
+    service: homeassistant.turn_on
+  initial_state: 'true'
+- id: '1581089874187'
+  alias: switcher turned off notification
+  description: ''
+  trigger:
+  - entity_id: switcher_aio.control_device_switch
+    for: 00:01:00
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      message: Boiler switcher just turned off
+    service: tts.google_translate_say
+- id: '1583791671442'
+  alias: החתמת כרטיס - נוכחות בדרום
+  description: ''
+  trigger:
+  - event: enter
+    platform: geo_location
+    source: ''
+    zone: zone.working
+  condition: []
+  action:
+  - data: {}
+    entity_id: input_boolean.been_to_beka
+    service: input_boolean.turn_on
+- id: '1583791865476'
+  alias: החתמת כרטיס - ביטול נוכחות בדרום
+  description: ''
+  trigger:
+  - at: '23:59:00'
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: input_boolean.been_to_beka
+    service: input_boolean.turn_off
+  - data: {}
+    entity_id: input_boolean.google_sign_off
+    service: input_boolean.turn_off
+- id: '1583792415817'
+  alias: החתמת כרטיס - התראה של טלגרם
+  description: ''
+  trigger:
+  - event: enter
+    platform: geo_location
+    source: ''
+    zone: zone.sign_out
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.been_to_beka
+      state: 'on'
+  action:
+  - data:
+      message: omri, dont forget to sign off work
+    service: telegram_bot.send_message
+  - data: {}
+    entity_id: input_boolean.google_sign_off
+    service: input_boolean.turn_on
+  - data:
+      message: omri, dont forget to sign off work
+    service: notify.mobile_app_sm_n950f
+- id: '1584226182125'
+  alias: החתמת כרטיס - התראה של גוגל
+  description: התראה של גוגל + הזנה ביומן
+  trigger:
+  - entity_id: person.omri
+    for: 00:01:00
+    platform: state
+    to: home
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.been_to_beka
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.google_sign_off
+      state: 'on'
+  action:
+  - data:
+      calendar_id: benami.omri@gmail.com
+      end_date_time: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+      start_date_time: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+      summary: finished work
+    service: google.add_event
+  - data:
+      message: welcome home Omri, sir. hope you had a pleasent day at work. please
+        dont forget to sign off work.
+    service: tts.google_translate_say
+  - data: {}
+    entity_id: input_boolean.google_sign_off
+    service: input_boolean.turn_off
+- id: '1589404884492'
+  alias: Notify daily water usage exceed threshold
+  description: ''
+  trigger:
+  - entity_id: sensor.read_your_meter_daily
+    platform: state
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.read_your_meter_daily'') | float >= states(''input_number.water_meter_daily_threshold'') | float }}'
+  action:
+  - data:
+      message: Daily water usage {{ states('sensor.read_your_meter_daily') }} has
+        exceeded daily threshold, please check for leaks.
+    service: telegram_bot.send_message

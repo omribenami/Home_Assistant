@@ -1,0 +1,230 @@
+ - platform: season
+   type: astronomical
+
+# Weather prediction
+ - platform: yr
+ 
+ - platform: systemmonitor
+   resources:
+     - type: disk_use_percent
+       arg: /home
+     - type: memory_free
+     - type: process
+     - type: processor_use
+     - type: last_boot
+     - type: load_1m
+ 
+ - platform: broadlink
+   host: 10.0.0.8
+   mac: 'B4:43:0D:AA:A0:1E'
+   monitored_conditions:
+     - temperature
+
+ - platform: darksky
+   api_key: 60f581ca73830d65a3d8bba7165027b0
+   forecast:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+   monitored_conditions:
+      - icon
+      - summary
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - humidity
+      - temperature
+      - temperature_high
+      - temperature_low
+      - apparent_temperature
+      - apparent_temperature_high
+      - apparent_temperature_low
+      - wind_speed
+      - wind_bearing
+      - precip_type
+      - precip_probability
+      - precip_accumulation
+      - precip_intensity
+      - precip_intensity_max
+      - uv_index
+      - daily_summary
+      - pressure
+      - visibility
+   scan_interval:
+    minutes: 5
+
+
+ - platform: mqtt
+   name: "Red Alert"
+   state_topic: "/redalert/"
+   value_template: "{{ value_json.data }}"
+   qos: 1
+
+ - platform: mqtt
+   name: "Red Alert"
+   state_topic: "/redalert/"
+   value_template: "{{ value_json }}"
+   qos: 1
+
+ - platform: seventeentrack
+   scan_interval: 100
+   username: benami.omri@gmail.com 
+   password: oBa12345 
+
+ - platform: waze_travel_time
+   name: זמן לעבודה
+   origin: נוה שאנן 43, אריאל, ישראל
+   destination: תעש כניסה מזרחית (שער שיא), ישראל
+   region: 'IL'
+ - platform: waze_travel_time
+   name: זמן לשרונים
+   origin: נוה שאנן 43, אריאל, ישראל
+   destination: קניון שרונים , רמת השרון , ישראל
+   region: 'IL'
+ - platform: waze_travel_time
+   name: נסיעה למבשרת
+   origin: נוה שאנן 43, אריאל, ישראל
+   destination: הברוש 109 , מבשרת ציון , ישראל
+   region: 'IL'
+ - platform: waze_travel_time
+   name: נסיעה מרמת בקע
+   origin: 31.1047711, 34.8795399
+   destination: נוה שאנן 43, אריאל, ישראל
+   region: 'IL'
+ - platform: waze_travel_time
+   name: omri to home
+   origin: person.omri
+   destination: נוה שאנן 43, אריאל, ישראל
+   region: 'IL'
+ 
+ #- platform: command_line
+ #  name: SSL cert expiry
+ #  unit_of_measurement: days
+ #  scan_interval: 10800
+ #  command: "ssl-cert-check -b -c  /home/homeassistant/.acme.sh/omribenami.duckdns.org/fullchain.cer | awk '{ print $NF }'"
+
+ - platform: time_date
+   display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'date_time_iso'
+    - 'time_date'
+    - 'time_utc'
+    - 'beat'
+   
+ - platform: rest
+   resource: http://10.0.0.12:8000/switcher/get_state
+   name: Switcher WebAPI
+   json_attributes:
+    - state
+    - time_left
+    - auto_off
+    - power_consumption
+    - electric_current
+   value_template: 'OK'
+
+ - platform: template
+   sensors:
+     switcher_webapi_time_left:
+       friendly_name: "Time Left"
+       icon_template: mdi:timelapse
+       value_template: >-
+         {% if is_state("sensor.switcher_webapi_state", "off") %}
+             off
+         {% else %}
+             {% set hour = states.sensor.switcher_webapi.attributes.time_left.split(':')[0] %}
+             {% set min = states.sensor.switcher_webapi.attributes.time_left.split(':')[1] %}
+             {% set sec = states.sensor.switcher_webapi.attributes.time_left.split(':')[2] %}
+             {{ hour | int }}h {{ min | int }}m
+         {% endif %}
+     switcher_webapi_auto_off_time:
+      friendly_name: "Auto Off"
+      icon_template: mdi:av-timer
+      value_template: >-
+         {% if is_state("sensor.switcher_webapi_state", "off") %}
+             off
+         {% else %}
+             {% set hour = states.sensor.switcher_webapi.attributes.time_left.split(':')[0] %}
+             {% set min = states.sensor.switcher_webapi.attributes.time_left.split(':')[1] %}
+             {% set sec = states.sensor.switcher_webapi.attributes.time_left.split(':')[2] %}
+             {% set seconds = hour | int *3600 + min | int * 60 + sec | int * 1  %}
+             {{ ( now().timestamp() + seconds ) | timestamp_custom("%H:%M") }}
+         {% endif %}
+     switcher_webapi_electric_current:
+       friendly_name: "Electric Current"
+       icon_template: mdi:flash
+       unit_of_measurement: A
+       value_template: >-
+         {{ state_attr('sensor.switcher_webapi', 'electric_current') }}
+     switcher_webapi_power_consumption:
+       friendly_name: "Power Consumption"
+       icon_template: mdi:flash
+       unit_of_measurement: kW
+       value_template: >-
+         {{ state_attr('sensor.switcher_webapi', 'power_consumption') }}
+     switcher_webapi_state:
+       friendly_name: "State"
+       icon_template: mdi:shower
+       value_template: >-
+         {{ state_attr('sensor.switcher_webapi', 'state') }}  
+
+############################################################################
+#                                                                          #
+#   HA Current Version                                                     #
+#                                                                          #
+############################################################################
+
+# - platform: command_line
+#   name: Version
+#   command: "cat /config/.HA_VERSION"
+
+ - platform: version
+   name: HA Current Version
+   source: local
+
+
+
+############################################################################
+#                                                                          #
+#   HA Available Version                                                   #
+#                                                                          #
+############################################################################
+
+ - platform: version
+   name: HA Available Version
+   source: docker
+   image: default
+   beta: false
+
+ 
+   
+##########$##snarr,radarr#############
+ - platform: sonarr_upcoming_media 
+   api_key: 734dbecb19984f0ea66627e02778cfe8
+   days: 5
+   max: 5
+
+ - platform: radarr_upcoming_media
+   api_key: bbf552a37e8b41e7841e93f91a9c94d7
+   days: 120
+   theaters: true
+   max: 5
+
+ - platform: plex_recently_added
+   name: Recently Added Movies # will create sensor.recently_added_movies
+   token: !secret plex_token
+   host: !secret plex_host
+   port: 32400
+   section_types:
+   - movie
+
+ - platform: plex_recently_added
+   name: Recently Added TV  # will create sensor.recently_added_tv
+   token: !secret plex_token
+   host: !secret plex_host
+   port: 32400
+   section_types:
+   - show

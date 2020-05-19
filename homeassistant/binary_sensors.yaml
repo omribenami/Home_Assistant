@@ -1,0 +1,23 @@
+ # - platform: ping
+ #   name: tv_power
+ #   host: 10.0.0.26
+ #   count: 2
+ #   scan_interval: 10
+
+  - platform: ping
+    name: Beast
+    host: 10.0.0.234
+    count: 2
+    scan_interval: 10
+
+  - platform: ping
+    name: broadlink
+    host: 10.0.0.8
+    count: 2
+    scan_interval: 10
+
+  - platform: ping
+    name: tv_power_wifi
+    host: 10.0.0.24
+    count: 2
+    scan_interval: 10

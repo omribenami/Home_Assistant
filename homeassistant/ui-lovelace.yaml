@@ -1,0 +1,532 @@
+
+title: משפחת בן-עמי
+       # Button card templates  
+
+
+views:
+    - background: var(--background-image)
+      badges:
+        - entity: person.omri
+        - entity: person.moran
+        - entity: sensor.time
+        - entity: sensor.season
+        - entity: sun.sun
+      cards:
+        - entity: weather.dark_sky
+          style: |
+            ha-card {
+              direction: ltr;
+            }
+          type: 'custom:weather-card'
+        - entity: calendar.shopping_list
+          style: |
+            ha-card {
+              font-size: large;
+            }
+          title: רשימת קניות
+          type: 'custom:todoist-list'
+        - dateColor: red
+          dateSize: 100
+          dayWrapperLineColor: black
+          dimFinishedEvents: true
+          entities:
+            - entity: calendar.lvz_mshpkhty
+          eventBarColor: blue
+          finishedEventFilter: grayscale(100%)
+          finishedEventOpacity: 0.6
+          fullDayEventText: All day
+          locationIconColor: 'rgb(230, 124, 115)'
+          locationLinkColor: black
+          locationTextSize: 90
+          maxDaysToShow: 7
+          progressBarColor: blue
+          showColors: true
+          showCurrentEventLine: false
+          showLocation: true
+          showMonth: false
+          showProgressBar: true
+          timeColor: blue
+          timeSize: 90
+          title: לוז משפחה
+          titleColor: yellow
+          titleSize: 100
+          type: 'custom:atomic-calendar'
+          untilText: Until
+        - entities:
+            - entity: sensor.zmn_l_bvdh
+            - entity: sensor.zmn_lshrvnym
+            - entity: sensor.nsy_h_lmbshrt
+            - entity: sensor.omri_to_home
+            - entity: sensor.nsy_h_mrmt_bq
+          show_header_toggle: false
+          title: זמני נסיעה
+          type: entities
+        - card:
+            title: מה פועל
+          entities:
+            - entity: calendar.khgym_byshrl
+            - entity: automation.kybvy_vrvt
+            - entity: switch.sonoff_100064d0d9_2
+            - entity: switch.sonoff_100064fbea_1
+            - entity: switch.sonoff_100064fbea_3
+            - entity: switch.sonoff_100064fbea_2
+            - entity: switch.sonoff_10004d9362
+            - entity: switch.sonoff_100064d0d9_1
+            - entity: light.06200292dc4f222ff779
+            - entity: switch.beast
+            - entity: binary_sensor.tv_power
+            - entity: climate.bedroom_ac
+            - entity: climate.pc_room_ac
+            - entity: climate.livingroom_ac
+            - entity: climate.kids_room_ac
+            - entity: media_player.living_room_speaker
+            - entity: sensor.ssl_cert_expiry
+            - entity: light.gateway_light_04cf8c981e9a
+            - entity: switch.sonoff_10009f6cd7_1
+            - entity: switch.sonoff_10009f6cd7_2
+          state_filter:
+            - 'on'
+            - cool
+            - playing
+            - heat
+            - 5
+            - 4
+            - 3
+            - 2
+            - 1
+          title: On entity
+          type: entity-filter
+        - entity: sensor.seventeentrack_packages_ready_to_be_picked_up
+          max: 10
+          min: 0
+          name: ממתינות לאיסוף
+          severity:
+            green: 1
+            red: 5
+            yellow: 3
+          style: |
+            ha-card {
+            direction: ltr;
+            }
+          theme: default
+          type: gauge
+          unit: חבילות
+        - entity: sensor.seventeentrack_packages_in_transit
+          max: 10
+          min: 0
+          name: בדרך
+          severity:
+            green: 3
+            red: 12
+            yellow: 7
+          style: |
+            ha-card {
+            direction: ltr;
+            }
+          theme: default
+          type: gauge
+          unit: חבילות
+        - entities:
+            - entity: sensor.israel_coronavirus_confirmed
+            - entity: sensor.israel_coronavirus_current
+            - entity: sensor.israel_coronavirus_deaths
+            - entity: sensor.israel_coronavirus_recovered
+          type: entities
+        - entities:
+            - entity: sensor.worldwide_coronavirus_confirmed
+            - entity: sensor.worldwide_coronavirus_current
+            - entity: sensor.worldwide_coronavirus_deaths
+            - entity: sensor.worldwide_coronavirus_recovered
+          type: entities
+      icon: 'mdi:home-assistant'
+      main_config: true
+      title: בית
+    - background: var(--background-image)
+      badges:
+        - entity: person.omri
+        - entity: person.moran
+        - entity: sensor.time
+        - entity: sensor.season
+        - entity: sun.sun
+      cards:
+        - entities:
+            - entity: cover.shutters_blinds_salon
+              name: מצבי הפעלה
+            - entity: cover.shutters_blinds_salon
+              name: סטטוס
+              type: 'custom:slider-entity-row'
+          show_header_toggle: false
+          title: תריס גינה
+          type: entities
+        - entities:
+            - entity: switch.sonoff_100064d0d9_2
+            - entity: switch.sonoff_100064fbea_1
+            - entity: switch.sonoff_100064fbea_3
+          show_header_toggle: true
+          title: אורות מטבח
+          type: entities
+        - entities:
+            - entity: switch.sonoff_100064fbea_2
+            - entity: switch.sonoff_10004d9362
+          title: אורות סלון
+          type: entities
+        - entities:
+            - entity: switch.sonoff_100064d0d9_1
+            - entity: switch.sonoff_10009f6cd7_2
+            - entity: switch.sonoff_10009f6cd7_1
+          title: בחוץ
+          type: entities
+        - entities:
+            - entity: light.gateway_light_04cf8c981e9a
+            - entity: light.gateway_light_04cf8c981e9a
+              name: ' '
+              type: 'custom:slider-entity-row'
+          show_header_toggle: false
+          title: מסדרון
+          type: entities
+      icon: 'mdi:lightbulb'
+      path: default_view
+      title: מתגים
+    - background: var(--background-image)
+      badges:
+        - entity: person.omri
+        - entity: person.moran
+        - entity: sensor.time
+        - entity: sensor.season
+        - entity: sun.sun
+      cards:
+        - entity: climate.livingroom_ac
+          name: סלון
+          style: |
+            ha-card {
+              direction: ltr;
+            }
+          theme: default
+          type: thermostat
+        - entity: climate.bedroom_ac
+          name: מזגן חדר שינה
+          style: |
+            ha-card {
+              direction: ltr;
+            }
+          theme: default
+          type: thermostat
+        - entity: climate.kids_room_ac
+          name: מזגן חדר ילדים
+          style: |
+            ha-card {
+              direction: ltr;
+            }
+          theme: default
+          type: thermostat
+        - entity: climate.pc_room_ac
+          name: מזגן חדר רביעי
+          style: |
+            ha-card {
+              direction: ltr;
+            }
+          theme: default
+          type: thermostat
+      icon: 'mdi:air-conditioner'
+      title: מזגנים
+    - background: var(--background-image)
+      badges:
+        - entity: person.omri
+        - entity: person.moran
+        - entity: sensor.time
+        - entity: sensor.season
+        - entity: sun.sun
+      cards:
+        - entity: switch.switcher_webapi
+          hold_action:
+            action: more-info
+          state_image:
+            'off': /local/switcher_off.png
+            'on': /local/switcher_on.png
+          tap_action:
+            action: toggle
+          type: picture-entity
+        - entity: sensor.switcher_webapi_power_consumption
+          max: 15
+          min: 0
+          name: צריכת חשמל
+          severity:
+            green: 10
+            red: 12
+            yellow: 11
+          theme: default
+          type: gauge
+          unit: אמפר
+        - entities:
+            - entity: script.switcher_turn_on_timer_script
+            - entity: sensor.switcher_webapi_auto_off_time
+            - entity: sensor.switcher_webapi_time_left
+          title: My Title
+          type: entities
+        - entity: sensor.switcher_webapi_power_consumption
+          max: 100
+          min: 0
+          type: gauge
+        - cards:
+            - template: shoulder_blank_card
+              type: 'custom:button-card'
+            - template: simple_select_button
+              type: 'custom:decluttering-card'
+              variables:
+                - entity: input_select.switcher_timer_minutes_input_select
+                - name: 15
+                - option: '15'
+            - template: simple_select_button
+              type: 'custom:decluttering-card'
+              variables:
+                - entity: input_select.switcher_timer_minutes_input_select
+                - name: 30
+                - option: '30'
+            - template: simple_select_button
+              type: 'custom:decluttering-card'
+              variables:
+                - entity: input_select.switcher_timer_minutes_input_select
+                - name: 45
+                - option: '45'
+            - template: simple_select_button
+              type: 'custom:decluttering-card'
+              variables:
+                - entity: input_select.switcher_timer_minutes_input_select
+                - name: 60
+                - option: '60'
+            - template: shoulder_blank_card
+              type: 'custom:button-card'
+          type: horizontal-stack
+      icon: 'mdi:water'
+      path: water
+      title: water
+    - background: var(--background-image)
+      badges:
+        - entity: person.omri
+        - entity: person.moran
+        - entity: sensor.time
+        - entity: sensor.plex_desktop_d27ee0p
+        - entity: sun.sun
+      cards:
+        - entity: media_player.living_room_tv
+          hold_action:
+            action: more-info
+          state_image:
+            'off': /local/TV_OFF.jpeg
+            'on': /local/TV_ON.jpeg
+          tap_action:
+            action: toggle
+          type: picture-entity
+        - entity: switch.beast
+          hold_action:
+            action: more-info
+          state_image:
+            'off': /local/pc_off.png
+            'on': /local/pc_on.png
+          tap_action:
+            action: toggle
+          type: picture-entity
+        - entity: media_player.living_room_speaker
+          type: media-control
+        - entity: media_player.plex_chrome
+          type: media-control
+        - entities:
+            - sensor.hp_deskjet_4620_series
+            - sensor.hp_deskjet_4620_series_black_ink
+            - sensor.hp_deskjet_4620_series_cyan_ink
+            - sensor.hp_deskjet_4620_series_magenta_ink
+            - sensor.hp_deskjet_4620_series_yellow_ink
+            - sensor.hp_deskjet_4620_series_uptime
+          type: entities
+      icon: 'mdi:film'
+    - background: var(--background-image)
+      badges:
+        - entity: person.omri
+        - entity: person.moran
+        - entity: sensor.time
+        - entity: sensor.season
+        - entity: sun.sun
+      cards:
+        - entities:
+            - entity: switch.xiaomi_gateway_alarm
+            - entity: binary_sensor.motion_sensor
+          show_header_toggle: false
+          title: מערכת אזעקה
+          type: entities
+        - entities:
+            - entity: sensor.red_alert_2
+            - entity: sensor.red_alert
+          type: entities
+      icon: 'mdi:security'
+      title: אבטחה
+    - background: var(--background-image)
+      badges: null
+      cards:
+        - cards:
+            - entities:
+                - entity: input_select.timer_list
+                - entity: input_text.timer_string
+                - entity: input_select.timer_entity_id
+                - entity: input_select.timer_to_state
+                - entity: script.timer_x_init
+              show_header_toggle: false
+              title: Timer - Change state in x time
+              type: entities
+            - card:
+                entities:
+                  - entity: timer.timer_0
+                type: entities
+              conditions:
+                - entity: timer.timer_0
+                  state_not: idle
+              type: conditional
+            - card:
+                entities:
+                  - entity: timer.timer_1
+                type: entities
+              conditions:
+                - entity: timer.timer_1
+                  state_not: idle
+              type: conditional
+            - card:
+                entities:
+                  - entity: timer.timer_2
+                type: entities
+              conditions:
+                - entity: timer.timer_2
+                  state_not: idle
+              type: conditional
+            - card:
+                entities:
+                  - entity: timer.timer_3
+                type: entities
+              conditions:
+                - entity: timer.timer_3
+                  state_not: idle
+              type: conditional
+            - card:
+                entities:
+                  - entity: timer.timer_4
+                type: entities
+              conditions:
+                - entity: timer.timer_4
+                  state_not: idle
+              type: conditional
+          type: vertical-stack
+        - content: |-
+            ### Timer 0
+            state: [[ timer.timer_0 ]]
+            total duration: [[ timer.timer_0.attributes.duration ]]
+            task: [[ input_text.timer_0_task ]]
+            ### Timer 1
+            state: [[ timer.timer_1 ]]
+            total duration: [[ timer.timer_1.attributes.duration ]]
+            task: [[ input_text.timer_1_task ]]
+            ### Timer 2
+            state: [[ timer.timer_2 ]]
+            total duration: [[ timer.timer_2.attributes.duration ]]
+            task: [[ input_text.timer_2_task ]]
+            ### Timer 3
+            state: [[ timer.timer_3 ]]
+            total duration: [[ timer.timer_3.attributes.duration ]]
+            task: [[ input_text.timer_3_task ]]
+            ### Timer 4
+            state: [[ timer.timer_4 ]]
+            total duration: [[ timer.timer_4.attributes.duration ]]
+            task: [[ input_text.timer_4_task ]]
+          title: Timer Status
+          type: markdown
+      icon: 'mdi:timer'
+      title: Timer
+    - background: var(--background-image)
+      badges:
+        - entity: person.omri
+        - entity: person.moran
+        - entity: sensor.time
+        - entity: sensor.season
+        - entity: sun.sun
+      cards:
+        - entities:
+            - entity: binary_sensor.updater
+          show_header_toggle: false
+          title: עדכון תוכנה
+          type: entities
+        - entity: sensor.ssl_cert_expiry
+          max: 90
+          min: 0
+          severity:
+            green: 90
+            red: 10
+            yellow: 50
+          theme: default
+          type: gauge
+        - entity: sensor.disk_use_percent_home
+          max: 100
+          min: 0
+          name: disk usage
+          severity:
+            green: 20
+            red: 90
+            yellow: 70
+          theme: default
+          type: gauge
+          unit: '%'
+        - entity: sensor.memory_free
+          max: 100
+          min: 0
+          severity:
+            green: 300
+            red: 700
+            yellow: 500
+          theme: default
+          type: gauge
+        - entities:
+            - entity: binary_sensor.remote_ui
+            - entity: binary_sensor.broadlink
+            - entity: binary_sensor.beast
+            - entity: binary_sensor.hp_printer_status
+          show_header_toggle: false
+          title: סטטוס מכשירים
+          type: entities
+        - entities:
+            - entity: sensor.process
+            - entity: sensor.processor_use
+            - entity: sensor.speedtest_ping
+            - entity: sensor.speedtest_download
+            - entity: sensor.speedtest_upload
+          show_header_toggle: false
+          title: Raspberry usage
+          type: entities
+      icon: 'mdi:access-point-network'
+      title: נתונים טכניים
+    - background: var(--background-image)
+      badges:
+        - entity: person.omri
+        - entity: person.moran
+        - entity: sensor.time
+        - entity: sensor.season
+        - entity: sun.sun
+      cards:
+        - entities:
+            - entity: automation.automatic_theme_sunrise
+            - entity: automation.automatic_theme_sunset
+            - entity: automation.led_change_to_red_on_event
+            - entity: automation.omri_entered_ariel
+            - entity: automation.omri_left_work
+            - entity: automation.yty_bgn
+            - entity: automation.ydv_bgn
+            - entity: automation.new_package_arrived
+          show_header_toggle: true
+          type: entities
+        - entities:
+            - input_boolean.goodnight
+            - input_boolean.set_out_from_home
+            - input_boolean.switch_ac_kitchen
+            - input_boolean.evening
+            - input_boolean.switch_ac_livingroom
+          show_header_toggle: false
+          title: Input boolean
+          type: entities
+      icon: 'mdi:home-automation'
+      title: אוטומציות
+  

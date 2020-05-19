@@ -1,0 +1,74 @@
+{
+  "name": "simple-thermostat",
+  "version": "0.26.0-0",
+  "description": "A different take on the thermostat card for Home Assistant Lovelace UI",
+  "main": "src/index.js",
+  "repository": "git@github.com:nervetattoo/simple-thermostat.git",
+  "author": "Raymond Julin <raymond.julin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "debounce-fn": "^3.0.1",
+    "lit-element": "^2.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "ava": "^2.2.0",
+    "husky": "^3.0.2",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "release-it": "^12.3.5",
+    "rollup": "^1.19.3",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-filesize": "^6.1.1",
+    "rollup-plugin-minify-html-literals": "^1.2.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.1",
+    "tracker-json": "^1.2.0"
+  },
+  "scripts": {
+    "release": "release-it",
+    "test": "ava",
+    "build": "NODE_ENV=production rollup -c"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "tracker-json": {
+    "simple-thermostat": {
+      "repo": "nervetattoo/simple-thermostat",
+      "file": "simple-thermostat.js",
+      "resolve": "gh:release"
+    }
+  },
+  "release-it": {
+    "github": {
+      "release": true,
+      "assets": [
+        "simple-thermostat.*"
+      ]
+    },
+    "scripts": {
+      "afterBump": "npx tracker-json",
+      "beforeStart": "yarn build",
+      "afterRelease": "rm simple-thermostat.js"
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "babel": {
+    "presets": [
+      "@ava/stage-4"
+    ]
+  },
+  "ava": {
+    "require": [
+      "@babel/register"
+    ]
+  }
+}

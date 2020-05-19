@@ -1,0 +1,12 @@
+switcher_turn_on:
+  url: http://10.0.0.3:8000/switcher/turn_on
+  method: "POST"
+  payload: '{"minutes": "{{ minutes }}"}'
+
+switcher_turn_off:
+  url: http://10.0.0.3:8000/switcher/turn_on
+  method: "POST"
+
+switcher_get_state:
+  url: http://10.0.0.3:8000/switcher/get_state
+  method: "POST"

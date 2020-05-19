@@ -1,0 +1,8 @@
+##################################################################################
+##################################SHELL COMMANDS##################################
+##################################################################################
+backup_to_hardisk: "bash scripts/homeassistant.sh"
+homeassistant_updade: !secret update_homeassistant_container
+
+my_first_shell_command: touch test.txt
+

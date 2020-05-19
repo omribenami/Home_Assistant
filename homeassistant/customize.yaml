@@ -1,0 +1,234 @@
+switch.sonoff_100064d0d9_2:
+  friendly_name: לד מטבח
+switch.sonoff_100064fbea_3:
+  friendly_name: בוצ'ר
+  outlet_name: Boucher light
+switch.sonoff_100064fbea_1:
+  friendly_name: ספוטים מטבח
+switch.sonoff_100064d0d9_1:
+  friendly_name: שביל כניסה
+switch.sonoff_100064fbea_2:
+  friendly_name: תאורת סלון
+switch.sonoff_10004d9362:
+  friendly_name: מנורת ספה
+binary_sensor.beast:
+  friendly_name: המחשב של עמרי
+binary_sensor.remote_ui:
+  friendly_name: שליטה מרחוק
+group.all_switches:
+  friendly_name: כל האורות
+light.06200292dc4f222ff779:
+  friendly_name: לד סלון
+binary_sensor.floorplan:
+  custom_ui_state_card: state-card-floorplan
+  config:
+    name: Demo Floorplan
+    image: /local/custom_ui/floorplan/floorplan.css
+    stylesheet: /local/custom_ui/floorplan/floorplan.css
+    last_motion_entity: sensor.template_last_motion
+    last_motion_class: last-motion
+    groups:
+    - name: Sensors
+      entities:
+      - sensor.dark_sky_temperature
+      text_template: '${entity.state ? Math.ceil(entity.state) : "undefined"}'
+      class_template: ' var temp = parseFloat(entity.state.replace("°", "")); if (temp
+        < 10) return "temp-low"; else if (temp < 30) return "temp-medium"; else return
+        "temp-high"; '
+    - name: Lights
+      entities:
+      - light.hallway
+      - light.living_room
+      - light.patio
+      - group.kitchen_lights
+      - group.living_room_lights
+      states:
+      - state: 'on'
+        class: light-on
+      - state: 'off'
+        class: light-off
+      action:
+        domain: homeassistant
+        service: toggle
+    - name: Switches
+      entities:
+      - switch.doorbell
+      states:
+      - state: 'on'
+        class: doorbell-on
+      - state: 'off'
+        class: doorbell-off
+    - name: NVR
+      entities:
+      - binary_sensor.blue_iris_nvr
+      text_template: '${(entity.state === "on") ? "online" : "offline"}'
+      states:
+      - state: 'off'
+        class: danger-text
+      - state: 'on'
+        class: success-text
+    - name: Alarm Panel
+      entities:
+      - alarm_control_panel.alarm
+      states:
+      - state: armed_away
+        class: alarm-armed
+      - state: armed_home
+        class: alarm-armed
+      - state: disarmed
+        class: alarm-disarmed
+    - name: Binary sensors
+      entities:
+      - binary_sensor.front_hallway
+      - binary_sensor.kitchen
+      - binary_sensor.master_bedroom
+      - binary_sensor.theatre_room
+      states:
+      - state: 'off'
+        class: info-background
+      - state: 'on'
+        class: warning-background
+      state_transitions:
+      - name: On to off
+        from_state: 'on'
+        to_state: 'off'
+        duration: 10
+    binary_sensor.floorplan:
+      custom_ui_state_card: state-card-floorplan
+      config:
+        name: ben-ami
+        image: /local/custom_ui/floorplan/floorplan.png
+        stylesheet: /local/custom_ui/floorplan/floorplan.css
+        pan_zoom:
+        date_format: DD-MMM-YYYY
+        last_motion_entity: sensor.template_last_motion
+        last_motion_class: last-motion
+        groups:
+        - name: Sensors
+          entities:
+          - sensor.dark_sky_temperature
+          text_template: '${entity.state ? Math.ceil(entity.state) : "undefined"}'
+          class_template: ' var temp = parseFloat(entity.state.replace("°", ""));
+            if (temp < 10) return "temp-low"; else if (temp < 30) return "temp-medium";
+            else return "temp-high"; '
+        - name: Lights
+          entities:
+          - entity: switch.sonoff_100064d0d9_2
+          - entity: switch.sonoff_100064fbea_1
+          - entity: switch.sonoff_100064fbea_3
+          - entity: switch.sonoff_100064fbea_2
+          - entity: light.06200292dc4f222ff779
+          - entity: switch.sonoff_10004d9362
+          - entity: switch.sonoff_100064d0d9_1
+          states:
+          - state: 'on'
+            class: light-on
+          - state: 'off'
+            class: light-off
+          action:
+            domain: homeassistant
+            service: toggle
+        - name: Switches
+          entities:
+          - switch.doorbell
+          states:
+          - state: 'on'
+            class: doorbell-on
+          - state: 'off'
+            class: doorbell-off
+        - name: NVR
+          entities:
+          - binary_sensor.blue_iris_nvr
+          text_template: '${(entity.state === "on") ? "online" : "offline"}'
+          states:
+          - state: 'off'
+            class: danger-text
+          - state: 'on'
+            class: success-text
+        - name: Alarm Panel
+          entities:
+          - alarm_control_panel.alarm
+          states:
+          - state: armed_away
+            class: alarm-armed
+          - state: armed_home
+            class: alarm-armed
+          - state: disarmed
+            class: alarm-disarmed
+        - name: Binary sensors
+          entities:
+          - binary_sensor.front_hallway
+          - binary_sensor.kitchen
+          - binary_sensor.master_bedroom
+          - binary_sensor.theatre_room
+          states:
+          - state: 'off'
+            class: info-background
+          - state: 'on'
+            class: warning-background
+          state_transitions:
+          - name: On to off
+            from_state: 'on'
+            to_state: 'off'
+            duration: 10
+cover.7373340684f3eb57d641:
+  friendly_name: Curtain
+switch.beast:
+  icon: mdi:desktop-classic
+climate.kids_room_as:
+  friendly_name: מזגן חדר ילדים
+climate.pc_room_ac:
+  friendly_name: מזגן חדר רביעי
+climate.kids_room_ac:
+  fan_list:
+  - auto
+  - Low
+  - Medium-Low
+  - Medium
+  - Medium-High
+  - High
+  - Turbo
+  - Quiet
+  friendly_name: מזגן חדר ילדים
+climate.bedroom_ac:
+  friendly_name: מזגן חדר שינה
+climate.livingroom_ac:
+  friendly_name: מזגן סלון
+script.timer_x_init:
+  friendly_name: Cancel Timer
+  icon: mdi:cancel
+zone.bvdh_mvrn:
+  friendly_name: M.work
+  latitude: 32.103882
+  longitude: 35.209774
+  radius: 200
+zone.bvdh_mry:
+  friendly_name: O.work
+zone.gn_yty:
+  latitude: 32.105707
+  longitude: 35.197623
+  radius: 50
+zone.rmt_bq:
+  radius: 4500
+cover.shutters_blinds_salon: {}
+switch.sonoff_10009f6cd7_1:
+  friendly_name: תאורת גינה
+switch.sonoff_10009f6cd7_2:
+  friendly_name: תאורת דק
+person.omri:
+  entity_picture: /local/omri.jpg
+person.moran:
+  entity_picture: /local/moran.jpg
+light.gateway_light_04cf8c981e9a:
+  friendly_name: hallway Light
+binary_sensor.motion_sensor:
+  friendly_name: Motion Sensor
+zone.home:
+  radius: 30
+switch.adguard_protection:
+  templates:
+    icon_color: 'if (state === ''On'') return ''rgb(143,29,29)''; return ''rgb(45,133,58)'';
+
+      '
+sensor.plex_benami_homeserver_x230:
+  friendly_name: Plex HomeServer

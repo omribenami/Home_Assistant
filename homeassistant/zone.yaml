@@ -1,0 +1,38 @@
+
+  - name: גן עידו
+    latitude: 32.101074
+    longitude: 35.205376
+    radius: 20
+    icon: mdi:school
+
+  - name: גן איתי
+    latitude: 32.101978 
+    longitude: 35.205756
+    radius: 20
+    icon: mdi:school    
+
+  - name: Ariel entrence
+    latitude: 32.109167
+    longitude: 35.150368
+    radius: 100
+    icon: mdi:pin   
+
+  - name: bvdh_mvrn
+    latitude: 32.103882
+    longitude: 35.209774
+    radius: 200
+    icon: mdi:school
+
+  - name: bvdh_mry
+    latitude: 32.1297879
+    longitude: 34.8672489
+    radius: 2000
+    icon: mdi:tank
+
+  - name: rmt_bq
+    latitude: 31.100870
+    longitude: 34.900989
+    radius: 4500
+    icon: mdi:tank
+
+

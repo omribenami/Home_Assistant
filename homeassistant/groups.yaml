@@ -1,0 +1,23 @@
+#waze:
+#  name: Waze
+#  view: no
+#  entities:
+#    - sensor.to_work
+#    - sensor.to_wotk_distance
+#    - sensor.to_wotk_route
+#    - sensor.hline_1
+#    - sensor.back_home
+#    - sensor.back_home_distance
+#    - sensor.back_home_route
+
+#default_view:
+#  view: yes
+#  icon: mdi:home
+##  entities:
+#   - group.Network
+#   - group.Weather
+#   - group.Database
+#   - group.waze
+
+# Creates all legacy groups.  All newly created entity_id's will be added to the correct legacy group.
+
