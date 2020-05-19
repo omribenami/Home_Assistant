@@ -9,6 +9,6 @@ Home Assistant is an open source home automation that puts local control and pri
  * 12gb ddram
  * 1TB ssdLinux (ubuntu 20.04)
  
-###Software:
+### Software:
 Docker-compose based on Linux (Ubuntu 20.004)
 
