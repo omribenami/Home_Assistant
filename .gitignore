@@ -123,3 +123,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+homeassistant/themes/lovelace-ios-dark-mode-theme/
