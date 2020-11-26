@@ -2,18 +2,18 @@
   name: pc room AC
   host: 10.0.0.1
   port: 7000
-  mac: 'F4:91:1E:53:49:AB'
+  mac: 'F4:91:1E:53:XX:XX'
 #  min_temp: 16
 #  max_temp: 30
 #  target_temp: 21
 #  target_temp_step: 1
-#  encryption_key: s7Uv0Xy3Ab6De9Gh
+#  encryption_key: s7Uv0Xy3XXXX
 
 - platform: gree
   name: kids room AC
   host: 10.0.0.15
   port: 7000
-  mac: 'F4:91:1E:6A:98:1B'
+  mac: 'F4:91:1E:6A:XX:XX'
   temp_sensor: sensor.temperature_158d0002bf8bd3
 #  min_temp: 16
 #  max_temp: 30
@@ -24,7 +24,7 @@
   name: bedroom Ac
   host: 10.0.0.2
   port: 7000
-  mac: 'F4:91:1E:52:A7:7D'
+  mac: 'F4:91:1E:52:XX:XX'
 #  min_temp: 16
 #  max_temp: 30
 #  target_temp: 21
@@ -34,7 +34,7 @@
   name: Livingroom Ac
   host: 10.0.0.21
   port: 7000
-  mac: 'F4:91:1E:53:4A:76'
+  mac: 'F4:91:1E:53:XX:XX'
   temp_sensor: sensor.broadlink_temperature
 #  min_temp: 16
 #  max_temp: 30
