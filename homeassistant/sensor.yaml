@@ -16,12 +16,12 @@
  
  - platform: broadlink
    host: 10.0.0.8
-   mac: 'B4:43:0D:AA:A0:1E'
+   mac: 'B4:43:0D:XX:XX:XX'
    monitored_conditions:
      - temperature
 
  - platform: darksky
-   api_key: 60f581ca73830d65a3d8bba7165027b0
+   api_key: XXXXXXXXXXXXXXXXXXXXXXXXXX0
    forecast:
       - 0
       - 1
@@ -75,28 +75,28 @@
 
  - platform: waze_travel_time
    name: זמן לעבודה
-   origin: נוה שאנן 43, אריאל, ישראל
-   destination: תעש כניסה מזרחית (שער שיא), ישראל
+   origin: XXXX3, XXXX, ישראל
+   destination: XXXX (XXXXXXXXX), ישראל
    region: 'IL'
  - platform: waze_travel_time
    name: זמן לשרונים
-   origin: נוה שאנן 43, אריאל, ישראל
+   origin: XXXXX, XXXX, ישראל
    destination: קניון שרונים , רמת השרון , ישראל
    region: 'IL'
  - platform: waze_travel_time
    name: נסיעה למבשרת
-   origin: נוה שאנן 43, אריאל, ישראל
-   destination: הברוש 109 , מבשרת ציון , ישראל
+   origin: XXXXXXXXXXX, XXXX, ישראל
+   destination: XXXX , XXXX , ישראל
    region: 'IL'
  - platform: waze_travel_time
-   name: נסיעה מרמת בקע
-   origin: 31.1047711, 34.8795399
-   destination: נוה שאנן 43, אריאל, ישראל
+   name: נסיעה XXXXXXXXX
+   origin: 31.XXXXX, 34.XXXX
+   destination: XXXXXXXXXXX, אריאל, ישראל
    region: 'IL'
  - platform: waze_travel_time
    name: omri to home
    origin: person.omri
-   destination: נוה שאנן 43, אריאל, ישראל
+   destination: XXXXXXXXXX, אריאל, ישראל
    region: 'IL'
  
  #- platform: command_line
@@ -203,12 +203,12 @@
    
 ##########$##snarr,radarr#############
  - platform: sonarr_upcoming_media 
-   api_key: 734dbecb19984f0ea66627e02778cfe8
+   api_key: XXXXXXXXXXXXXXXXXXXXXX
    days: 5
    max: 5
 
  - platform: radarr_upcoming_media
-   api_key: bbf552a37e8b41e7841e93f91a9c94d7
+   api_key: XXXXXXXXXXXXXXXXXXXXXX
    days: 120
    theaters: true
    max: 5
