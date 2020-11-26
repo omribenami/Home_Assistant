@@ -54,11 +54,11 @@ speedtestdotnet:
 
 read_your_meter: 
   host: http://localhost:4444
-  username: XXXXX.omri@gmail.com
+  username: XXXXX.XXX@gmail.com
   password: !secret meter 
 
 sonoff:
-  username: XXXXX.omri@gmail.com
+  username: XXXXX.XXX@gmail.com
   password: !secret sonoff
 #  scan_interval: 1250
 #  grace_period: 600
@@ -70,7 +70,7 @@ calendar:
     token:  !secret todoist   
     
 tuya:
-  username: XXXXXX.omri@gmail.com
+  username: XXXXXX.XXX@gmail.com
   password: !secret Tuya
   country_code: 972
   platform: jinvoo_smart
