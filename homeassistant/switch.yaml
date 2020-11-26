@@ -114,7 +114,7 @@
  - platform: xiaomi_gateway_alarm
    name: Xiaomi Gateway Alarm
    host: 10.0.0.23
-   token: a6e5d503829bfe5fe4bacc0396d30ee7
+   token: XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
  - platform: template
    switches:
