@@ -1,23 +1,23 @@
-- cal_id: "benami.omri@gmail.com"
+- cal_id: "XXX.XXX@gmail.com"
   entities:
-  - device_id: benami.omri@gmail.com
+  - device_id: XXX.XXX@gmail.com
     name: google.calendar.sensor
     track: true
-- cal_id: bsl.org.il_brkacdc0j5s5fo6p1dnfoq4u18@group.calendar.google.com
+- cal_id: XXXXXXXXX@group.calendar.google.com
   entities:
   - device_id: lygt_vvynr_sl
     ignore_availability: true
     name: "\u05DC\u05D9\u05D2\u05EA \u05D5\u05D5\u05D9\u05E0\u05E8 \u05E1\u05DC"
     track: true
 
-- cal_id: family06577627448059535240@group.calendar.google.com
+- cal_id: XXXXXXXXXXXXXXXXXXXX@group.calendar.google.com
   entities:
   - device_id: lmshpkhh
     ignore_availability: true
     name: "\u05DC\u05DE\u05E9\u05E4\u05D7\u05D4"
     track: true
 
-- cal_id: e9nc180rtcrst4c7la3e9o9i6sud4p3p@import.calendar.google.com
+- cal_id: eXXXXXXXXXXXXXXXX@import.calendar.google.com
   entities:
   - device_id: lygt_h_l_hpv_l_y_m
     ignore_availability: true
@@ -25,7 +25,7 @@
       \ \u05D9-\u05DD"
     track: true
 
-- cal_id: addressbook#contacts@group.v.calendar.google.com
+- cal_id: XXXXXXXXXXXXXXXXX@group.v.calendar.google.com
   entities:
   - device_id: contacts
     ignore_availability: true
@@ -39,14 +39,14 @@
     name: "\u05D7\u05D2\u05D9\u05DD \u05D1\u05D9\u05E9\u05E8\u05D0\u05DC"
     track: true
 
-- cal_id: 3l7nicqcuq7hsnbl53d3tq984o@group.calendar.google.com
+- cal_id: XXXXXXXXXXXXXXXXXXXXXXXXX@group.calendar.google.com
   entities:
   - device_id: lvz_mshpkhty
     ignore_availability: true
     name: "\u05DC\u05D5\u05D6 \u05DE\u05E9\u05E4\u05D7\u05EA\u05D9"
     track: true
 
-- cal_id: nlb6idh3cnirp5tj16v10n36d8@group.calendar.google.com
+- cal_id: XXXXXXXXXXXXXXXXXXXXXXX@group.calendar.google.com
   entities:
   - device_id: todoist
     ignore_availability: true
@@ -60,21 +60,21 @@
     name: Holidays in Israel
     track: true
 
-- cal_id: luz.nisuim@gmail.com
+- cal_id: XXXXXXXXXXXXXXXX@gmail.com
   entities:
   - device_id: luz_nisuim_gmail_com
     ignore_availability: true
     name: luz.nisuim@gmail.com
     track: true
 
-- cal_id: j9hl5f6k27dkjteeh3dsnrb81o@group.calendar.google.com
+- cal_id: XXXXXXXXXXXXXXXXXX@group.calendar.google.com
   entities:
   - device_id: todoist
     ignore_availability: true
     name: Todoist
     track: true
 
-- cal_id: k2m40o0mmuqc3vssfugo6cusps@group.calendar.google.com
+- cal_id: XXXXXXXXXXXXXXXXXXX@group.calendar.google.com
   entities:
   - device_id: todoist
     ignore_availability: true
