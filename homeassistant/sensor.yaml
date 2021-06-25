@@ -71,7 +71,7 @@
  - platform: seventeentrack
    scan_interval: 100
    username: benami.omri@gmail.com 
-   password: oBa12345 
+   password: XXXXXX 
 
  - platform: waze_travel_time
    name: זמן לעבודה
